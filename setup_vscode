@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# Setup VS Code
+#  - Install extensions
+#  - Symlink the user settings to keep them in sync
+
+readonly VS_CODE_SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
+
+link_settings() {
+    ln -sf "./vscode-settings.json" "${VS_CODE_SETTINGS_PATH}"
+    echo "link ${VS_CODE_SETTINGS_PATH}"
+}
+
+if [[ ! $(which code) ]]; then
+    echo "In VS Code:
+ - open the Command Palette (⇧ ⌘ P)
+ - and type 'shell command' to find: Install 'code' command in PATH command."
+    exit 0
+fi
+
+declare -a extensions=( 
+    'Zignd.html-css-class-completion'
+    'akamud.vscode-theme-onedark'
+    'christian-kohler.npm-intellisense'
+    'christian-kohler.path-intellisense'
+    'qinjia.seti-icons'
+)
+
+echo
+echo "Install extensions"
+echo
+
+for ext in "${extensions[@]}"; do
+    code --install-extension ${ext}
+done
+
+echo
+echo "Symlik settings"
+echo
+
+if [ ! \( -L "$VS_CODE_SETTINGS_PATH" \) ]; then
+    read -p "Are you sure you want to override VS code settings ? " -n 1 -r
+    echo
+    echo
+    if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+        link_settings
+    else
+        echo "Skip symlink settings"
+    fi
+else
+    link_settings
+fi
+
+echo
+echo "Done."
+echo
