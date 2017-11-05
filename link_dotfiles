@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Symlink all the files in ./link to $HOME
+
+echo
+echo "LINK .dotfiles"
+echo
+
+for file in ./link/.[^.]*; do
+    echo "ln -sf "${file}" "${HOME}""
+done

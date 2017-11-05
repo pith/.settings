@@ -1,0 +1,32 @@
+[user]
+	name = Pierre Thirouin
+	email = pierre.thirouin@blablacar.com
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+
+[color]
+	ui = always
+
+[alias]
+	st = status
+	ci = commit
+	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
+	co = checkout
+	pl = pull --ff-only
+
+[merge]
+	tool = vimdiff
+[pull]
+	ff = only
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
