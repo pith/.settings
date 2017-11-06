@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# /!\ REQUIRES THE SCRIPT TO BE IN $HOME/.settings
+#
 # Setup VS Code
 #  - Install extensions
 #  - Symlink the user settings to keep them in sync
@@ -7,7 +9,7 @@
 readonly VS_CODE_SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
 
 link_settings() {
-    ln -sf "./vscode-settings.json" "${VS_CODE_SETTINGS_PATH}"
+    ln -sf "${HOME}/.settings/vscode-settings.json" "${VS_CODE_SETTINGS_PATH}"
     echo "link ${VS_CODE_SETTINGS_PATH}"
 }
 
@@ -18,12 +20,16 @@ if [[ ! $(which code) ]]; then
     exit 0
 fi
 
-declare -a extensions=( 
+declare -a extensions=(
+    'EditorConfig.EditorConfig'
     'Zignd.html-css-class-completion'
     'akamud.vscode-theme-onedark'
     'christian-kohler.npm-intellisense'
     'christian-kohler.path-intellisense'
+    'dbaeumer.vscode-eslint'
+    'flowtype.flow-for-vscode'
     'qinjia.seti-icons'
+    'slevesque.vscode-multiclip'
 )
 
 echo

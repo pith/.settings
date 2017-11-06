@@ -1,4 +1,6 @@
 {
+    "emmet.triggerExpansionOnTab": true,
+    "eslint.autoFixOnSave": true,
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "seti"

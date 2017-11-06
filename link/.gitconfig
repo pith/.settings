@@ -14,7 +14,8 @@
 	ci = commit
 	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
 	co = checkout
-	pl = pull --ff-only
+	ll = pull --ff-only
+	pf = push --force-with-lease
 
 [merge]
 	tool = vimdiff
